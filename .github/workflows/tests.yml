@@ -1,0 +1,38 @@
+name: HUNGR checks
+
+on:
+  push:
+    branches: [main, "feat/**"]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: hungr
+          POSTGRES_PASSWORD: test-only
+          POSTGRES_DB: hungr
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U hungr -d hungr"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql://hungr:test-only@localhost:5432/hungr
+      OPENAI_API_KEY: ""
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install -r backend/requirements.txt
+      - name: Initialize database
+        run: python -m backend.init_db
+      - name: Run tests
+        run: pytest -q

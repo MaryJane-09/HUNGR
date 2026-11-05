@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f4ed">
+  <meta name="description" content="HUNGR makes student food budgets go further with price-grounded meal planning.">
+  <title>HUNGR — Eat smart. Stay ready.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="announcement"><span class="sparkle">✦</span> THE SMARTER WAY TO EAT ON A STUDENT BUDGET <span class="sparkle">✦</span></div>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="HUNGR home"><span class="brand-icon">h<span class="brand-dot">.</span></span><span>HUNGR<span class="brand-period">.</span></span></a>
+    <nav aria-label="Main navigation"><a href="#how">How it works</a><a href="#foods">Food prices</a><a href="#report">Contribute</a></nav>
+    <a class="button button-dark header-cta" href="#planner">Build my plan <span aria-hidden="true">↗</span></a>
+  </header>
+  <main>
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="live-dot"></span> FOR THE DAYS BEFORE ALLOWANCE</span>
+        <h1>Good food.<br>Better <span class="word-accent">budget<span class="squiggle">~</span></span></h1>
+        <p>That money in your account? Let's make it last. HUNGR builds practical meal plans from listed local food prices, so you can focus on living.</p>
+        <div class="hero-actions"><a href="#planner" class="button button-orange">Plan my meals <span aria-hidden="true">↗</span></a><a href="#how" class="quiet-link">See how it works <span aria-hidden="true">→</span></a></div>
+        <div class="mini-proof"><span class="proof-stars">★★★★★</span><span>Built for actual student life. No guesswork on totals.</span></div>
+      </div>
+      <div class="hero-art" aria-label="Illustration of a bowl of food and a weekly food budget card" role="img">
+        <div class="sun-circle"></div><div class="scribble scribble-a">✳</div><div class="scribble scribble-b">✧</div>
+        <div class="food-bowl"><div class="bowl-inner"><span>🥘</span></div></div>
+        <div class="floating-note"><span class="note-emoji">💸</span><div><small>THE PLAN</small><strong>Spend smarter.</strong></div></div>
+        <div class="floating-chip"><span>✓</span> Every naira counts</div>
+        <div class="circle-caption">EAT WELL / WORRY LESS</div>
+      </div>
+    </section>
+    <section class="stripe" aria-label="Our principles"><div class="stripe-inner"><span>REAL FOOD</span><b>✳</b><span>REAL BUDGETS</span><b>✳</b><span>REAL LIFE</span><b>✳</b><span>YOUR CALL</span><b>✳</b></div></section>
+
+    <section id="planner" class="planner-section wrap">
+      <div class="section-intro"><span class="section-number">01 / THE PLANNER</span><h2>Let's make a <em>food plan.</em></h2><p>No spreadsheets. No complicated maths. Just tell us what you're working with.</p></div>
+      <div class="planner-layout">
+        <form id="planner-form" class="panel planner-card">
+          <div class="card-top"><span class="card-icon">✳</span><span class="card-kicker">YOUR BUDGET BRIEF</span></div>
+          <label for="budget">How much have you got? <span class="required">*</span></label>
+          <div class="input-money"><span>₦</span><input id="budget" name="budget" type="number" min="100" max="1000000" step="1" value="15000" required inputmode="numeric" aria-describedby="budget-help"></div>
+          <p id="budget-help" class="field-hint">Your entire food budget for the period.</p>
+          <div class="field-row"><div><label for="days">For how many days?</label><select id="days" name="days"><option value="1">1 day</option><option value="2">2 days</option><option value="3">3 days</option><option value="4">4 days</option><option value="5" selected>5 days</option><option value="6">6 days</option><option value="7">7 days</option></select></div>
+          <div><label for="location">Your area</label><select id="location" name="location"><option value="Yaba">Yaba, Lagos (demo)</option></select></div></div>
+          <label for="preferences">Anything else? <span class="optional">(optional)</span></label>
+          <textarea id="preferences" name="preferences" maxlength="300" rows="3" placeholder="e.g. I prefer quick breakfasts and I'm on campus all day"></textarea>
+          <button class="button button-orange full" id="plan-submit" type="submit">Find my food plan <span aria-hidden="true">↗</span></button>
+          <p class="form-message" id="plan-message" role="status" aria-live="polite"></p>
+          <p class="fine-print">Prices are illustrative demo entries, not verified market quotes. HUNGR is a budgeting aid, not nutrition advice.</p>
+        </form>
+        <aside class="planner-aside">
+          <div class="aside-badge">THE HUNGR WAY <span>↗</span></div>
+          <h3>Less “what will I eat?”<br><em>More “I've got this.”</em></h3>
+          <div class="aside-steps" id="how">
+            <div class="aside-step"><span>01</span><div><strong>Set your limit</strong><p>Tell us your food budget and how long it needs to last.</p></div></div>
+            <div class="aside-step"><span>02</span><div><strong>Get a realistic plan</strong><p>AI suggests meals; our backend checks every price and total.</p></div></div>
+            <div class="aside-step"><span>03</span><div><strong>Track what you eat</strong><p>Mark meals as eaten, or skip and adjust your plan.</p></div></div>
+          </div>
+          <div class="aside-footer"><span>✦</span> BUILT FOR STUDENTS, NOT BIG SPENDERS.</div>
+        </aside>
+      </div>
+      <section id="plan-panel" class="results" hidden aria-live="polite">
+        <div class="results-heading"><div><span class="section-number">YOUR PLAN IS READY</span><h2>Your next <em>few days.</em></h2><p id="plan-mode" class="result-subtitle"></p></div><span class="results-mark">✓</span></div>
+        <div class="stats-grid">
+          <div class="stat"><span>YOUR BUDGET</span><strong id="stat-budget">—</strong></div>
+          <div class="stat"><span>MEALS PLANNED</span><strong id="stat-cost">—</strong></div>
+          <div class="stat"><span>ACTUALLY SPENT</span><strong id="stat-spent">—</strong></div>
+          <div class="stat highlight"><span>CASH LEFT</span><strong id="stat-left">—</strong></div>
+        </div>
+        <p class="results-hint" id="plan-summary"></p>
+        <div id="meal-days" class="days-grid"></div>
+      </section>
+    </section>
+
+    <section class="foods-section" id="foods"><div class="wrap">
+      <div class="foods-header"><div><span class="section-number">02 / LOCAL FOOD BOARD</span><h2>Know your <em>options.</em></h2><p>A starting point for your plan. We're building a student-reported price network.</p></div><span class="board-sticker">THE FOOD BOARD<br>↘</span></div>
+      <p id="foods-status" class="form-message" role="status" aria-live="polite">Loading food board…</p>
+      <div class="food-grid" id="food-grid"></div>
+      <div class="price-disclaimer">ⓘ Demo prices are examples only. Please confirm current costs with local vendors before spending.</div>
+    </div></section>
+
+    <section id="report" class="contribute wrap">
+      <div class="contribute-copy"><span class="section-number">03 / HELP THE COMMUNITY</span><h2>Spotted a<br><em>better price?</em></h2><p>Students know their neighbourhood best. Share a price you've seen so the community can build a better picture.</p><div class="contribute-decor">✳</div></div>
+      <form class="panel report-card" id="report-form"><span class="card-kicker">REPORT A LOCAL PRICE</span><label for="report-food">Choose a food</label><select id="report-food" required><option value="">Select from the food board</option></select><label for="report-price">Price you saw (₦)</label><input id="report-price" type="number" min="100" max="100000" step="1" required placeholder="e.g. 850"><button type="submit" class="button button-dark full" id="report-submit">Send price report <span aria-hidden="true">↗</span></button><p id="report-message" class="form-message" role="status" aria-live="polite"></p><p class="fine-print">Submissions are stored as pending reports and do not automatically change listed prices.</p></form>
+    </section>
+  </main>
+  <footer class="footer"><div class="wrap footer-inner"><a class="brand footer-brand" href="#">HUNGR<span class="brand-period">.</span></a><span>Eat smart. Stay ready.</span><small>Made for the days when every naira matters. © 2026 HUNGR</small></div></footer>
+</body>
+</html>
