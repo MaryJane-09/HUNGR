@@ -121,7 +121,7 @@ svg { display: block; }
 .feature-art::before { content: ""; position: absolute; width: 370px; height: 370px; right: -110px; top: -90px; border-radius: 50%; border: 1px solid #aebafa32; box-shadow: 0 0 0 40px #aebafa09, 0 0 0 95px #aebafa07; z-index: -1; }
 .food-photo-frame {
   position: absolute; width: min(87%, 320px); height: 312px; top: 35px; right: 18px;
-  overflow: hidden; background: linear-gradient(145deg,#e4a878,#803e39);
+  overflow: hidden; background: #d6a38e url("/assets/meal-fallback.svg") center / cover no-repeat;
   border: 5px solid #ffffffdf; border-radius: 160px 160px 27px 27px;
   transform: rotate(6deg); box-shadow: 0 25px 40px #060e2870, 0 0 0 1px #ffffff24;
 }
