@@ -31,34 +31,70 @@ async function request(path, options = {}) {
   return data;
 }
 
-const icons = {breakfast: "☀️", lunch: "🍚", dinner: "🌙"};
+let selectedMealFilter = "all";
+
+function renderReportFoodOptions(list) {
+  const selector = document.querySelector("#report-food");
+  selector.replaceChildren();
+  const prompt = el("option", "", "Select a food item");
+  prompt.value = "";
+  selector.append(prompt);
+  for (const food of list) {
+    const option = el("option", "", food.name);
+    option.value = String(food.id);
+    selector.append(option);
+  }
+}
 
 function renderFoods(list) {
   foodGrid.replaceChildren();
-  const selector = document.querySelector("#report-food");
-  selector.replaceChildren(el("option", "", "Select from the food board"));
-  selector.firstChild.value = "";
-  for (const food of list) {
-    const card = el("article", "food-card");
-    const art = el("div", "food-symbol", icons[food.meal_type] || "🍽️");
-    const meta = el("div", "food-meta", food.meal_type.toUpperCase());
-    const name = el("h3", "", food.name);
-    const detail = el("p", "", `${food.category} · ${food.location}`);
-    const bottom = el("div", "food-bottom");
-    bottom.append(el("strong", "", money(food.price_kobo)), el("span", "", "DEMO PRICE"));
-    card.append(art, meta, name, detail, bottom);
-    foodGrid.append(card);
-    const opt = el("option", "", food.name);
-    opt.value = String(food.id);
-    selector.append(opt);
+  const visible = selectedMealFilter === "all"
+    ? list : list.filter(food => food.meal_type === selectedMealFilter);
+
+  for (const food of visible) {
+    const row = el("tr");
+    const item = el("td");
+    const identity = el("div", "food-name-cell");
+    const initials = food.name.split(/\s+/).slice(0, 2).map(word => word[0] || "").join("").toUpperCase();
+    const mark = el("span", "food-initial", initials || "F");
+    mark.setAttribute("aria-hidden", "true");
+    const description = el("div");
+    description.append(el("strong", "", food.name), el("small", "", food.category));
+    identity.append(mark, description);
+    item.append(identity);
+
+    const type = el("td");
+    type.append(el("span", "meal-tag", food.meal_type));
+    const location = el("td", "", food.location);
+    const price = el("td", "price-cell", money(food.price_kobo));
+    row.append(item, type, location, price);
+    foodGrid.append(row);
   }
-  foodsStatus.textContent = list.length ? "" : "No foods have been added to this location.";
+
+  document.querySelector("#food-count").textContent =
+    selectedMealFilter === "all"
+      ? `${list.length} sample listings · Yaba`
+      : `${visible.length} of ${list.length} sample listings · Yaba`;
+  foodsStatus.textContent = visible.length ? "" : "No items found for this meal type.";
 }
+
+document.querySelectorAll("[data-meal-filter]").forEach(button => {
+  button.addEventListener("click", () => {
+    selectedMealFilter = button.dataset.mealFilter;
+    document.querySelectorAll("[data-meal-filter]").forEach(other => {
+      const selected = other === button;
+      other.classList.toggle("is-selected", selected);
+      other.setAttribute("aria-pressed", String(selected));
+    });
+    renderFoods(foods);
+  });
+});
 
 async function loadFoods() {
   try {
     const data = await request("/api/foods?location=Yaba");
     foods = data.foods;
+    renderReportFoodOptions(foods);
     renderFoods(foods);
   } catch (error) {
     foodsStatus.textContent = `Could not load food board: ${error.message}`;
@@ -85,7 +121,7 @@ function renderPlan(plan) {
     for (const meal of plan.meals.filter(m => m.day_number === day)) {
       const row = el("div", `meal-row ${meal.status}`);
       const copy = el("div", "meal-copy");
-      copy.append(el("small", "", `${icons[meal.meal_type] || "🍽️"} ${meal.meal_type.toUpperCase()}`),
+      copy.append(el("small", "", meal.meal_type.toUpperCase()),
                   el("strong", "", meal.name),
                   el("span", "", money(meal.price_kobo)));
       const actions = el("div", "meal-actions");
@@ -182,5 +218,32 @@ async function restorePlan() {
     localStorage.removeItem("hungr-plan-id");
   }
 }
+function updateBudgetPreview() {
+  const budget = Number(document.querySelector("#budget").value);
+  const days = Number(document.querySelector("#days").value);
+  const valid = Number.isFinite(budget) && budget > 0 && Number.isInteger(days) && days >= 1;
+  document.querySelector("#preview-daily").textContent = valid
+    ? money(Math.round((budget / days) * 100)) : "—";
+  document.querySelector("#preview-days").textContent =
+    `Across ${days} ${days === 1 ? "day" : "days"}`;
+  document.querySelector("#preview-total").textContent = valid
+    ? `${money(Math.round(budget * 100))} total` : "Enter a valid budget";
+}
+document.querySelector("#budget").addEventListener("input", updateBudgetPreview);
+document.querySelector("#days").addEventListener("change", updateBudgetPreview);
+updateBudgetPreview();
+
+const navLinks = [...document.querySelectorAll(".nav-link")];
+navLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.forEach(other => {
+      other.classList.remove("is-active");
+      other.removeAttribute("aria-current");
+    });
+    link.classList.add("is-active");
+    link.setAttribute("aria-current", "page");
+  });
+});
+
 loadFoods();
 restorePlan();
