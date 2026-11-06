@@ -43,7 +43,7 @@ svg { display: block; }
 }
 .brand-mark span { color: #383a5f; }
 .brand-name { font-weight: 800; font-size: 24px; line-height: 1; letter-spacing: -.085em; }
-.brand-name>span { color: var(--accent); }
+.brand-name>span { color: #ff987f; }
 .brand-name small { display: block; font: 700 8px/1.2 "DM Sans", sans-serif; letter-spacing: .18em; margin-top: 6px; color: #878b9b; }
 .workspace-picker {
   margin: 0 0 33px; display: flex; align-items: center; gap: 11px;
@@ -92,7 +92,7 @@ svg { display: block; }
 .content { width: min(1400px, 100%); padding: 43px 45px 105px; margin: 0 auto; }
 .welcome-row { display: flex; justify-content: space-between; align-items: center; gap: 28px; margin-bottom: 32px; }
 .eyebrow { color: #676c7f; font-weight: 800; letter-spacing: .16em; font-size: 10px; line-height: 1.5; margin: 0; }
-.eyebrow-line { width: 15px; display: inline-block; border-top: 2px solid #7c7fb1; vertical-align: middle; margin-right: 8px; }
+.eyebrow-line { width: 15px; display: inline-block; border-top: 2px solid #ff987f; vertical-align: middle; margin-right: 8px; }
 .welcome-row h1 { font-size: clamp(30px, 3vw, 44px); line-height: 1.22; margin: 12px 0 10px; font-weight: 800; color: var(--ink); }
 .welcome-row h1 span { color: #7f8495; }
 .welcome-text>p:last-child { max-width: 570px; margin: 0; font-size: 13px; color: #74798a; line-height: 1.8; }
@@ -136,7 +136,7 @@ svg { display: block; }
 .legend-dot { width: 8px; height: 8px; background: #e0e2e8; border-radius: 3px; flex: none; }
 .legend-dot.filled { background: #5b69e5; }
 .example-foot { border-top: 1px solid #ecedf0; margin-top: 19px; padding-top: 12px; color: #9094a2; font-size: 9px; }
-.art-glint { position: absolute; color: #a4a7e4; opacity: .8; font-size: 22px; }
+.art-glint { position: absolute; color: #ffad95; opacity: .8; font-size: 22px; }
 .art-glint-one { top: 45px; right: 33px; }
 .art-glint-two { bottom: 20px; left: 30px; }
 
@@ -278,7 +278,7 @@ textarea::placeholder, input::placeholder { color: #a7aab6; }
 .full-width { width: 100%; justify-content: space-between; margin-top: 24px; }
 .main-footer { border-top: 1px solid var(--line); padding: 27px 45px; margin-top: auto; color: #989ca9; font-size: 11px; display: flex; align-items: center; gap: 25px; }
 .footer-name { font: 800 17px "Plus Jakarta Sans",sans-serif; color: #222736; letter-spacing: -.09em; }
-.footer-name span { color: #787bb3; }
+.footer-name span { color: #f38d78; }
 .main-footer small { margin-left: auto; font-size: 10px; }
 
 @media (max-width: 1300px) {
