@@ -268,6 +268,8 @@ navLinks.forEach(link => {
 const heroFoodPhoto = document.querySelector(".food-photo-frame img");
 heroFoodPhoto?.addEventListener("error", () => {
   heroFoodPhoto.hidden = true;
+  const photoCredit = document.querySelector(".photo-credit");
+  if (photoCredit) photoCredit.textContent = "Illustrated meal preview";
 });
 
 loadFoods();
