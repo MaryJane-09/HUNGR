@@ -28,8 +28,16 @@ def test_frontend_assets_are_served():
     assert "--canvas: #f7f8fc" in stylesheet.text
     assert ".meal-photo-label" in stylesheet.text
     assert ".food-initial.is-breakfast" in stylesheet.text
+    assert "/assets/meal-fallback.svg" in stylesheet.text
 
     script = client.get("/app.js?v=20261106-foodfirst")
     assert script.status_code == 200
     assert "javascript" in script.headers["content-type"]
     assert "updateBudgetPreview" in script.text
+
+
+def test_food_fallback_illustration_is_local():
+    response = client.get("/assets/meal-fallback.svg")
+    assert response.status_code == 200
+    assert "<svg" in response.text
+    assert 'viewBox="0 0 620 650"' in response.text
