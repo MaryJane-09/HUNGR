@@ -3,93 +3,170 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f6f4ed">
-  <meta name="description" content="HUNGR makes student food budgets go further with price-grounded meal planning.">
-  <title>HUNGR — Eat smart. Stay ready.</title>
+  <meta name="theme-color" content="#12182b">
+  <meta name="description" content="HUNGR helps students build practical, price-grounded meal plans and stay in control of their food budget.">
+  <title>HUNGR — Your food budget, figured out.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/style.css">
-  <script src="/app.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css?v=20261106-foodfirst">
+  <script src="/app.js?v=20261106-foodfirst" defer></script>
 </head>
 <body>
-  <div class="announcement"><span class="sparkle">✦</span> THE SMARTER WAY TO EAT ON A STUDENT BUDGET <span class="sparkle">✦</span></div>
-  <header class="site-header">
-    <a class="brand" href="#" aria-label="HUNGR home"><span class="brand-icon">h<span class="brand-dot">.</span></span><span>HUNGR<span class="brand-period">.</span></span></a>
-    <nav aria-label="Main navigation"><a href="#how">How it works</a><a href="#foods">Food prices</a><a href="#report">Contribute</a></nav>
-    <a class="button button-dark header-cta" href="#planner">Build my plan <span aria-hidden="true">↗</span></a>
-  </header>
-  <main>
-    <section class="hero wrap">
-      <div class="hero-copy">
-        <span class="eyebrow"><span class="live-dot"></span> FOR THE DAYS BEFORE ALLOWANCE</span>
-        <h1>Good food.<br>Better <span class="word-accent">budget<span class="squiggle">~</span></span></h1>
-        <p>That money in your account? Let's make it last. HUNGR builds practical meal plans from listed local food prices, so you can focus on living.</p>
-        <div class="hero-actions"><a href="#planner" class="button button-orange">Plan my meals <span aria-hidden="true">↗</span></a><a href="#how" class="quiet-link">See how it works <span aria-hidden="true">→</span></a></div>
-        <div class="mini-proof"><span class="proof-stars">★★★★★</span><span>Built for actual student life. No guesswork on totals.</span></div>
-      </div>
-      <div class="hero-art" aria-label="Illustration of a bowl of food and a weekly food budget card" role="img">
-        <div class="sun-circle"></div><div class="scribble scribble-a">✳</div><div class="scribble scribble-b">✧</div>
-        <div class="food-bowl"><div class="bowl-inner"><span>🥘</span></div></div>
-        <div class="floating-note"><span class="note-emoji">💸</span><div><small>THE PLAN</small><strong>Spend smarter.</strong></div></div>
-        <div class="floating-chip"><span>✓</span> Every naira counts</div>
-        <div class="circle-caption">EAT WELL / WORRY LESS</div>
-      </div>
-    </section>
-    <section class="stripe" aria-label="Our principles"><div class="stripe-inner"><span>REAL FOOD</span><b>✳</b><span>REAL BUDGETS</span><b>✳</b><span>REAL LIFE</span><b>✳</b><span>YOUR CALL</span><b>✳</b></div></section>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Primary navigation">
+      <a class="brand" href="#overview" aria-label="HUNGR home">
+        <span class="brand-mark" aria-hidden="true">H<span>.</span></span>
+        <span class="brand-name">hungr<span>.</span><small>FOOD, FIGURED OUT</small></span>
+      </a>
 
-    <section id="planner" class="planner-section wrap">
-      <div class="section-intro"><span class="section-number">01 / THE PLANNER</span><h2>Let's make a <em>food plan.</em></h2><p>No spreadsheets. No complicated maths. Just tell us what you're working with.</p></div>
-      <div class="planner-layout">
-        <form id="planner-form" class="panel planner-card">
-          <div class="card-top"><span class="card-icon">✳</span><span class="card-kicker">YOUR BUDGET BRIEF</span></div>
-          <label for="budget">How much have you got? <span class="required">*</span></label>
-          <div class="input-money"><span>₦</span><input id="budget" name="budget" type="number" min="100" max="1000000" step="1" value="15000" required inputmode="numeric" aria-describedby="budget-help"></div>
-          <p id="budget-help" class="field-hint">Your entire food budget for the period.</p>
-          <div class="field-row"><div><label for="days">For how many days?</label><select id="days" name="days"><option value="1">1 day</option><option value="2">2 days</option><option value="3">3 days</option><option value="4">4 days</option><option value="5" selected>5 days</option><option value="6">6 days</option><option value="7">7 days</option></select></div>
-          <div><label for="location">Your area</label><select id="location" name="location"><option value="Yaba">Yaba, Lagos (demo)</option></select></div></div>
-          <label for="preferences">Anything else? <span class="optional">(optional)</span></label>
-          <textarea id="preferences" name="preferences" maxlength="300" rows="3" placeholder="e.g. I prefer quick breakfasts and I'm on campus all day"></textarea>
-          <button class="button button-orange full" id="plan-submit" type="submit">Find my food plan <span aria-hidden="true">↗</span></button>
-          <p class="form-message" id="plan-message" role="status" aria-live="polite"></p>
-          <p class="fine-print">Prices are illustrative demo entries, not verified market quotes. HUNGR is a budgeting aid, not nutrition advice.</p>
-        </form>
-        <aside class="planner-aside">
-          <div class="aside-badge">THE HUNGR WAY <span>↗</span></div>
-          <h3>Less “what will I eat?”<br><em>More “I've got this.”</em></h3>
-          <div class="aside-steps" id="how">
-            <div class="aside-step"><span>01</span><div><strong>Set your limit</strong><p>Tell us your food budget and how long it needs to last.</p></div></div>
-            <div class="aside-step"><span>02</span><div><strong>Get a realistic plan</strong><p>AI suggests meals; our backend checks every price and total.</p></div></div>
-            <div class="aside-step"><span>03</span><div><strong>Track what you eat</strong><p>Mark meals as eaten, or skip and adjust your plan.</p></div></div>
+      <div class="workspace-picker">
+        <span class="workspace-avatar" aria-hidden="true">S</span>
+        <span class="workspace-details"><strong>Student workspace</strong><small>Personal dashboard</small></span>
+        <span class="workspace-chevron" aria-hidden="true">⌄</span>
+      </div>
+
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="side-nav">
+        <a class="nav-link is-active" href="#overview" aria-current="page">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          <span>Overview</span>
+        </a>
+        <a class="nav-link" href="#planner">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M7 3.5v3M17 3.5v3M4 9h16M5.5 5h13A1.5 1.5 0 0 1 20 6.5v12a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5v-12A1.5 1.5 0 0 1 5.5 5Z"/><path d="m8.5 14 2 2 5-5"/></svg>
+          <span>Meal planner</span>
+        </a>
+        <a class="nav-link" href="#foods">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M4 7.5h16M6 12.5h12M8 17.5h8M3 4h18v16H3z" stroke-linejoin="round"/></svg>
+          <span>Food prices</span>
+        </a>
+        <a class="nav-link" href="#report">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M12 8v8M8 12h8"/><circle cx="12" cy="12" r="9"/></svg>
+          <span>Report a price</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-spacer"></div>
+      <div class="sidebar-note">
+        <span class="sidebar-note-symbol" aria-hidden="true">✳</span>
+        <strong>Make every meal count.</strong>
+        <p>Less second-guessing. More clarity about your money and your next meal.</p>
+        <a href="#planner">Get started <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="sidebar-bottom"><span class="online-indicator" aria-hidden="true"></span> HUNGR preview <span>v0.1</span></div>
+    </aside>
+
+    <div class="main-shell">
+      <header class="topbar">
+        <div class="breadcrumbs"><span>Workspace</span><span aria-hidden="true">/</span><strong>Overview</strong></div>
+        <div class="topbar-right"><span class="demo-status"><span class="online-indicator"></span> Demo environment</span><span class="topbar-divider"></span><span class="profile-avatar" aria-label="Student workspace">S</span></div>
+      </header>
+
+      <main id="overview" class="content">
+        <div class="welcome-row">
+          <div class="welcome-text">
+            <p class="eyebrow"><span class="eyebrow-line"></span> YOUR FOOD, FIGURED OUT</p>
+            <h1>Eat well. <span>Spend wisely.</span></h1>
+            <p>Practical meal planning for a budget that needs to go further. Everything you need to make better food decisions, in one place.</p>
           </div>
-          <div class="aside-footer"><span>✦</span> BUILT FOR STUDENTS, NOT BIG SPENDERS.</div>
-        </aside>
-      </div>
-      <section id="plan-panel" class="results" hidden aria-live="polite">
-        <div class="results-heading"><div><span class="section-number">YOUR PLAN IS READY</span><h2>Your next <em>few days.</em></h2><p id="plan-mode" class="result-subtitle"></p></div><span class="results-mark">✓</span></div>
-        <div class="stats-grid">
-          <div class="stat"><span>YOUR BUDGET</span><strong id="stat-budget">—</strong></div>
-          <div class="stat"><span>MEALS PLANNED</span><strong id="stat-cost">—</strong></div>
-          <div class="stat"><span>ACTUALLY SPENT</span><strong id="stat-spent">—</strong></div>
-          <div class="stat highlight"><span>CASH LEFT</span><strong id="stat-left">—</strong></div>
+          <a href="#planner" class="button button-primary welcome-button">Create a meal plan <span aria-hidden="true">↗</span></a>
         </div>
-        <p class="results-hint" id="plan-summary"></p>
-        <div id="meal-days" class="days-grid"></div>
-      </section>
-    </section>
 
-    <section class="foods-section" id="foods"><div class="wrap">
-      <div class="foods-header"><div><span class="section-number">02 / LOCAL FOOD BOARD</span><h2>Know your <em>options.</em></h2><p>A starting point for your plan. We're building a student-reported price network.</p></div><span class="board-sticker">THE FOOD BOARD<br>↘</span></div>
-      <p id="foods-status" class="form-message" role="status" aria-live="polite">Loading food board…</p>
-      <div class="food-grid" id="food-grid"></div>
-      <div class="price-disclaimer">ⓘ Demo prices are examples only. Please confirm current costs with local vendors before spending.</div>
-    </div></section>
+        <section class="overview-grid" aria-label="Getting started">
+          <article class="feature-card">
+            <div class="feature-copy">
+              <span class="feature-badge"><span class="badge-light-dot"></span> A LITTLE MORE FOOD FREEDOM</span>
+              <h2>Good meals.<br>Smart spending.<br><em>That’s HUNGR.</em></h2>
+              <p>Make space for the meals you enjoy. We help you stretch your food money, one planned day at a time.</p>
+              <a href="#planner" class="feature-link">Find meals that fit <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="feature-art" aria-label="Food photography and meal-planning highlights">
+              <div class="food-photo-frame">
+                <img src="https://images.unsplash.com/photo-1664993101841-036f189719b6?auto=format&amp;fit=crop&amp;w=800&amp;q=82" alt="Plated Nigerian jollof rice with chicken" loading="eager" decoding="async">
+              </div>
+              <div class="meal-photo-label"><span class="meal-photo-kicker">ON THE MENU</span><strong>Good food.<br>Good choices.</strong><span class="meal-photo-foot">MEALS THAT FIT YOUR LIFE</span></div>
+              <div class="meal-visual-chip"><span class="chip-icon" aria-hidden="true">✳</span> MADE FOR REAL MEALS</div>
+              <span class="photo-credit">Photo: Keesha's Kitchen / Unsplash</span>
+            </div>
+          </article>
 
-    <section id="report" class="contribute wrap">
-      <div class="contribute-copy"><span class="section-number">03 / HELP THE COMMUNITY</span><h2>Spotted a<br><em>better price?</em></h2><p>Students know their neighbourhood best. Share a price you've seen so the community can build a better picture.</p><div class="contribute-decor">✳</div></div>
-      <form class="panel report-card" id="report-form"><span class="card-kicker">REPORT A LOCAL PRICE</span><label for="report-food">Choose a food</label><select id="report-food" required><option value="">Select from the food board</option></select><label for="report-price">Price you saw (₦)</label><input id="report-price" type="number" min="100" max="100000" step="1" required placeholder="e.g. 850"><button type="submit" class="button button-dark full" id="report-submit">Send price report <span aria-hidden="true">↗</span></button><p id="report-message" class="form-message" role="status" aria-live="polite"></p><p class="fine-print">Submissions are stored as pending reports and do not automatically change listed prices.</p></form>
-    </section>
-  </main>
-  <footer class="footer"><div class="wrap footer-inner"><a class="brand footer-brand" href="#">HUNGR<span class="brand-period">.</span></a><span>Eat smart. Stay ready.</span><small>Made for the days when every naira matters. © 2026 HUNGR</small></div></footer>
+          <article class="quick-start surface">
+            <div class="quick-start-top"><span class="eyebrow">YOUR WORKFLOW</span><span class="quick-start-icon" aria-hidden="true">↗</span></div>
+            <h3>From budget to bite.</h3>
+            <p class="quick-start-intro">A simple routine for planning meals without the money stress.</p>
+            <div class="workflow-list">
+              <div class="workflow-step"><span class="step-number">01</span><div><strong>Set your budget</strong><p>Choose an amount and how many days it needs to cover.</p></div></div>
+              <div class="workflow-step"><span class="step-number">02</span><div><strong>Get a meal plan</strong><p>We check every meal against the listed prices.</p></div></div>
+              <div class="workflow-step"><span class="step-number">03</span><div><strong>Track as you go</strong><p>Mark meals eaten or skipped to see what remains.</p></div></div>
+            </div>
+            <div class="quick-start-footer"><span class="footer-mark" aria-hidden="true">✓</span> Your budget stays in your control.</div>
+          </article>
+        </section>
+
+        <section id="planner" class="section-block">
+          <div class="section-heading">
+            <div><p class="eyebrow">01 <span class="section-divider">/</span> MEAL PLANNER</p><h2>Build your next meal plan.</h2><p>Give us the basics. We'll take care of the calculations.</p></div>
+            <span class="section-aside-label">PERSONAL PLANNING SPACE</span>
+          </div>
+          <div class="builder-grid">
+            <form id="planner-form" class="surface planner-card">
+              <div class="card-heading"><div><h3>Your budget details</h3><p>A few details to get started.</p></div><span class="card-heading-symbol" aria-hidden="true">↗</span></div>
+
+              <label for="budget">Total food budget <span class="required">*</span></label>
+              <div class="money-field"><span class="currency-symbol">₦</span><input id="budget" name="budget" type="number" min="100" max="1000000" step="1" value="15000" required inputmode="numeric" aria-describedby="budget-help"><span class="money-suffix">NGN</span></div>
+              <p id="budget-help" class="field-help">Your available amount for the entire period.</p>
+
+              <div class="field-row"><div class="field"><label for="days">Number of days</label><select id="days" name="days"><option value="1">1 day</option><option value="2">2 days</option><option value="3">3 days</option><option value="4">4 days</option><option value="5" selected>5 days</option><option value="6">6 days</option><option value="7">7 days</option></select></div>
+              <div class="field"><label for="location">Location</label><select id="location" name="location"><option value="Yaba">Yaba, Lagos (demo)</option></select></div></div>
+
+              <label for="preferences">Food preferences <span class="optional">Optional</span></label>
+              <textarea id="preferences" name="preferences" maxlength="300" rows="3" placeholder="Anything we should consider? e.g. quick breakfasts or meals to take to class"></textarea>
+
+              <div class="planner-form-footer"><p class="field-note"><span class="info-mark" aria-hidden="true">i</span> Plans use illustrative demo food prices.</p><button class="button button-primary" id="plan-submit" type="submit">Generate my plan <span aria-hidden="true">↗</span></button></div>
+              <p class="form-message" id="plan-message" role="status" aria-live="polite"></p>
+            </form>
+
+            <aside class="surface budget-insight" aria-label="Budget preview">
+              <div class="insight-heading"><div><span class="eyebrow">BUDGET PREVIEW</span><h3>Know your daily limit.</h3></div><span class="insight-asterisk" aria-hidden="true">✳</span></div>
+              <p class="insight-explainer">A quick way to see how far your budget needs to stretch.</p>
+              <div class="allowance-box"><span>DAILY ALLOWANCE</span><strong id="preview-daily">₦3,000</strong><p id="preview-days">Across 5 days</p></div>
+              <div class="allowance-caption"><div><span class="allowance-dot"></span> Your daily spending guide</div><span id="preview-total">₦15,000 total</span></div>
+              <div class="allowance-track" aria-hidden="true"><span></span></div>
+              <div class="insight-callout"><span class="callout-icon" aria-hidden="true">↗</span><p><strong>A little more clarity.</strong><br>This is your total divided by days, not a guaranteed meal cost. Your generated plan will show actual listed meal totals.</p></div>
+              <p class="preview-disclaimer">Price listings are sample data until independently verified.</p>
+            </aside>
+          </div>
+
+          <section id="plan-panel" class="results" hidden aria-live="polite">
+            <div class="section-heading results-heading"><div><p class="eyebrow">YOUR PLAN <span class="section-divider">/</span> READY</p><h2>Here’s your plan.</h2><p id="plan-mode"></p></div><span class="results-ready"><span class="online-indicator"></span> READY TO USE</span></div>
+            <div class="stats-grid">
+              <div class="stat surface"><span>TOTAL BUDGET</span><strong id="stat-budget">—</strong><small>What you started with</small></div>
+              <div class="stat surface"><span>PLANNED MEALS</span><strong id="stat-cost">—</strong><small>Current meal allocation</small></div>
+              <div class="stat surface"><span>SPENT SO FAR</span><strong id="stat-spent">—</strong><small>Marked as eaten</small></div>
+              <div class="stat surface stat-emphasis"><span>CASH REMAINING</span><strong id="stat-left">—</strong><small>Based on tracked spending</small></div>
+            </div>
+            <p class="results-hint" id="plan-summary"></p>
+            <div class="meal-grid" id="meal-days"></div>
+          </section>
+        </section>
+
+        <section id="foods" class="section-block">
+          <div class="section-heading"><div><p class="eyebrow">02 <span class="section-divider">/</span> PRICE DIRECTORY</p><h2>Know your options.</h2><p>Compare listed food prices before you decide what fits your budget.</p></div><span class="location-chip"><span class="location-dot"></span> Yaba, Lagos · Demo</span></div>
+          <div class="food-board surface">
+            <div class="board-toolbar"><div class="board-title"><h3>Food price directory</h3><p id="food-count">Loading listings…</p></div><div class="food-filters" role="group" aria-label="Filter foods by meal"><button type="button" class="filter-button is-selected" data-meal-filter="all" aria-pressed="true">All items</button><button type="button" class="filter-button" data-meal-filter="breakfast" aria-pressed="false">Breakfast</button><button type="button" class="filter-button" data-meal-filter="lunch" aria-pressed="false">Lunch</button><button type="button" class="filter-button" data-meal-filter="dinner" aria-pressed="false">Dinner</button></div></div>
+            <p id="foods-status" class="form-message board-message" role="status" aria-live="polite">Loading food directory…</p>
+            <div class="table-scroll"><table class="food-table"><thead><tr><th scope="col">FOOD ITEM</th><th scope="col">MEAL TYPE</th><th scope="col">LOCATION</th><th scope="col">LISTED PRICE</th></tr></thead><tbody id="food-grid"></tbody></table></div>
+            <div class="board-bottom"><span class="information-icon" aria-hidden="true">i</span><p>All listed prices are illustrative demo entries, not verified market quotations. Confirm prices with vendors before buying.</p><span class="board-bottom-tag">PREVIEW DATA</span></div>
+          </div>
+        </section>
+
+        <section id="report" class="section-block report-section">
+          <div class="report-intro"><p class="eyebrow">03 <span class="section-divider">/</span> COMMUNITY INPUT</p><h2>Better information starts with you.</h2><p>See a different price at a local spot? Share what you found to help improve the food-price directory.</p><div class="report-tip"><span class="report-tip-icon" aria-hidden="true">✓</span><span>Every submission goes into review. It won't change the displayed prices automatically.</span></div></div>
+          <form id="report-form" class="surface report-card"><div class="card-heading"><div><h3>Submit a price</h3><p>Help improve our price data.</p></div><span class="card-heading-symbol" aria-hidden="true">↗</span></div><label for="report-food">Food item</label><select id="report-food" required><option value="">Select a food item</option></select><label for="report-price">Price observed (₦)</label><input id="report-price" type="number" min="100" max="100000" step="1" required placeholder="e.g. 850"><button type="submit" class="button button-primary full-width" id="report-submit">Submit price report <span aria-hidden="true">↗</span></button><p id="report-message" class="form-message" role="status" aria-live="polite"></p></form>
+        </section>
+      </main>
+      <footer class="main-footer"><span class="footer-name">hungr<span>.</span></span><span>Spend smarter. Eat well.</span><small>Demo version · © 2026 HUNGR</small></footer>
+    </div>
+  </div>
 </body>
 </html>
