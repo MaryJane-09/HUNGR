@@ -55,9 +55,28 @@ function renderFoods(list) {
     const row = el("tr");
     const item = el("td");
     const identity = el("div", "food-name-cell");
-    const initials = food.name.split(/\s+/).slice(0, 2).map(word => word[0] || "").join("").toUpperCase();
-    const mark = el("span", "food-initial", initials || "F");
+    const mark = el("span", "food-initial");
+    const mealType = ["breakfast", "lunch", "dinner"].includes(food.meal_type) ? food.meal_type : "lunch";
+    mark.classList.add(`is-${mealType}`);
     mark.setAttribute("aria-hidden", "true");
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 24 24");
+    svg.setAttribute("fill", "none");
+    svg.setAttribute("stroke", "currentColor");
+    svg.setAttribute("stroke-width", "1.7");
+    svg.setAttribute("stroke-linecap", "round");
+    svg.setAttribute("stroke-linejoin", "round");
+    const strokes = {
+      breakfast: ["M4 17h16", "M6 14a6 6 0 0 1 12 0", "M12 3v3", "M5.5 6.5l2.1 2.1", "M18.5 6.5l-2.1 2.1"],
+      lunch: ["M4 13h16", "M5.5 13a6.5 6.5 0 0 0 13 0", "M7 19h10", "M9 5c-2 2 2 3 0 5", "M14 5c-2 2 2 3 0 5"],
+      dinner: ["M3 17h18", "M5 17a7 7 0 0 1 14 0", "M12 7V5", "M9 5h6"]
+    };
+    for (const d of strokes[mealType]) {
+      const stroke = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      stroke.setAttribute("d", d);
+      svg.append(stroke);
+    }
+    mark.append(svg);
     const description = el("div");
     description.append(el("strong", "", food.name), el("small", "", food.category));
     identity.append(mark, description);
@@ -119,7 +138,7 @@ function renderPlan(plan) {
                el("strong", "", money(plan.meals.filter(m => m.day_number === day && m.status !== "skipped").reduce((total, m) => total + m.price_kobo, 0))));
     card.append(top);
     for (const meal of plan.meals.filter(m => m.day_number === day)) {
-      const row = el("div", `meal-row ${meal.status}`);
+      const row = el("div", `meal-row ${meal.status} type-${meal.meal_type}`);
       const copy = el("div", "meal-copy");
       copy.append(el("small", "", meal.meal_type.toUpperCase()),
                   el("strong", "", meal.name),
