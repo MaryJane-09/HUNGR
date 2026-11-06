@@ -264,5 +264,11 @@ navLinks.forEach(link => {
   });
 });
 
+// Keep the meal visual intact when third-party image requests are blocked.
+const heroFoodPhoto = document.querySelector(".food-photo-frame img");
+heroFoodPhoto?.addEventListener("error", () => {
+  heroFoodPhoto.hidden = true;
+});
+
 loadFoods();
 restorePlan();
